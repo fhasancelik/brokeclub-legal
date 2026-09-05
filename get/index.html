@@ -3,14 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Broke Club — Support</title>
+<title>Broke Club — get the app</title>
+<meta name="description" content="No-spend challenges you do with friends. No bank login. Free.">
+<meta property="og:title" content="Broke Club">
+<meta property="og:description" content="No-spend challenges you do with friends. No bank login. Free.">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; line-height: 1.65; color: #1a1a1a; text-align: center; }
-  h1 { font-size: 2.4em; letter-spacing: -1px; margin-bottom: 0; }
-  .tagline { color: #6aa100; font-weight: 700; }
-  .links a { display: inline-block; margin: 8px 12px; font-weight: 600; }
-  .cat { width: 150px; height: auto; }
-  @media (prefers-color-scheme: dark) { body { background: #0d0d11; color: #f4f4f6; } a { color: #c8ff4d; } .tagline { color: #c8ff4d; } }
+  :root { --ink:#101014; --green:#C8FF4D; --dim:#8b8b96; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; flex-direction:column;
+         align-items:center; justify-content:center; gap:4px; padding:32px 20px 48px;
+         background:var(--ink); color:#fff; text-align:center;
+         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  .cat { width:min(210px,46vw); height:auto; }
+  h1 { font-size:2.1rem; margin:6px 0 2px; letter-spacing:-1px; }
+  .tagline { color:var(--green); font-weight:800; margin:0 0 6px; }
+  p.sub { color:var(--dim); max-width:22rem; margin:0 0 22px; line-height:1.55; }
+  a.btn { display:block; width:min(320px,86vw); margin:9px auto; padding:15px 20px;
+          border-radius:14px; font-weight:800; text-decoration:none;
+          background:var(--green); color:var(--ink); }
+  a.btn.alt { background:transparent; color:#fff; border:2px solid #2c2c34; }
+  .fine { margin-top:26px; font-size:.8rem; color:#5c5c66; }
+  .fine a { color:#5c5c66; }
 </style>
 </head>
 <body>
@@ -33,12 +46,30 @@
 </svg>
 <h1>broke club</h1>
 <p class="tagline">Saving money, loudly.</p>
-<p>No-spend challenges with friends. Hold the streak, watch your pocket grow, drag your friends in.</p>
-<div class="links">
-  <a href="get/">Get the app</a> ·
-  <a href="privacy.html">Privacy Policy</a> ·
-  <a href="terms.html">Terms of Use</a> ·
+<p class="sub">No-spend challenges you do <em>with</em> friends.<br>No bank login. No ads. Free.</p>
+
+<a class="btn" id="ios" href="https://apps.apple.com/app/id6797783738?ct=ig-bio">Download on the App Store</a>
+<a class="btn alt" id="android" href="https://play.google.com/store/apps/details?id=com.hasancelik.brokeclub&referrer=utm_source%3Dinstagram%26utm_medium%3Dbio%26utm_campaign%3Dig-bio">Get it on Google Play</a>
+
+<p class="fine">
+  <a href="../privacy.html">Privacy</a> &middot;
+  <a href="../terms.html">Terms</a> &middot;
   <a href="mailto:hasancelikjob@gmail.com">Support</a>
-</div>
+</p>
+
+<script>
+// Send phones straight to their own store; desktop keeps both buttons.
+(function () {
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+              (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(ua);
+  var target = isIOS ? document.getElementById("ios").href
+             : isAndroid ? document.getElementById("android").href
+             : null;
+  // replace() so Back returns to Instagram, not to this interstitial
+  if (target) setTimeout(function () { location.replace(target); }, 120);
+})();
+</script>
 </body>
 </html>
